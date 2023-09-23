@@ -24,18 +24,87 @@ Another aspect is that the data set should be formatted in such a way that more 
 
 
 ## ALGORITHM:
-Importing the libraries
-Importing the dataset
-Taking care of missing data
-Encoding categorical data
-Normalizing the data
-Splitting the data into test and train
+1.Importing the libraries
+2.Importing the dataset
+3.Taking care of missing data
+4.Encoding categorical data
+5.Normalizing the data
+6.Splitting the data into test and train
 
 ## PROGRAM:
-/Write your code here/
+```
+
+
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+
+
+df=pd.read_csv('Churn_Modelling.csv')
+df
+
+
+df.isnull().sum()
+
+
+df.duplicated()
+
+
+df.drop('RowNumber',axis=1,inplace=True)
+df.drop('CustomerId',axis=1,inplace=True)
+df.drop('Age',axis=1,inplace=True)
+df.drop('Gender',axis=1,inplace=True)
+df.drop('Surname',axis=1,inplace=True)
+df.drop('Geography',axis=1,inplace=True)
+df
+
+
+ms=MinMaxScaler()
+df2=pd.DataFrame(ms.fit_transform(df))
+df2
+
+
+X=df2.iloc[:,:-1].values
+X
+
+
+y=df2.iloc[:,-1].values
+y
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print(X_train)
+print("X_train: ",len(X_train))
+print(X_test)
+print("Size of X_test: ",len(X_test))
+
+```
 
 ## OUTPUT:
-/ Show the result/
+
+
+![Screenshot 2023-09-23 131918](https://github.com/Dharshan011/Ex.No.1---Data-Preprocessing/assets/113497491/3283ed48-add7-4834-97fb-190e34b948fe)
+
+
+![Screenshot 2023-09-23 131945](https://github.com/Dharshan011/Ex.No.1---Data-Preprocessing/assets/113497491/111d0a59-3273-4851-9ef6-b40b0f66c2e3)
+
+
+![Screenshot 2023-09-23 131959](https://github.com/Dharshan011/Ex.No.1---Data-Preprocessing/assets/113497491/f9097497-df0b-46ea-815c-8d70d2603b60)
+
+
+![Screenshot 2023-09-23 132010](https://github.com/Dharshan011/Ex.No.1---Data-Preprocessing/assets/113497491/f5283eef-a0ce-4f27-8996-614d8f2e07fe)
+
+
+![Screenshot 2023-09-23 132024](https://github.com/Dharshan011/Ex.No.1---Data-Preprocessing/assets/113497491/779dcd93-a783-4a11-ba67-5c080820659d)
+
+
+![Screenshot 2023-09-23 132045](https://github.com/Dharshan011/Ex.No.1---Data-Preprocessing/assets/113497491/485a705c-5506-4351-928c-e04008b91d98)
+
+![Screenshot 2023-09-23 132039](https://github.com/Dharshan011/Ex.No.1---Data-Preprocessing/assets/113497491/600c4f33-e440-4203-a88b-2bd4fd539e02)
 
 ## RESULT
-/Type your result here/
+
+
+The data set downloaded from kaggle is successfully processed.
